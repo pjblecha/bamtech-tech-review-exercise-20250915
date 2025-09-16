@@ -1,0 +1,35 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+@BaseURL = https://localhost:7204
+
+
+GET {{BaseURL}}/Person
+
+####
+
+GET {{BaseURL}}/Person/Jane%20Doe
+
+####
+
+PUT {{BaseURL}}/Person
+Content-Type: application/json
+{
+  "name": "Jane Doe",
+  "rank": "LTCtl",
+  "duty": "Astronaut"
+}
+
+POST {{BaseURL}}/Person/?name=Jim%20Lovell
+
+####
+
+POST {{BaseURL}}/AstronautDuty
+Content-Type: application/json
+{
+  "name": "Jim Lovell",
+  "rank": "Captain",
+  "dutyTitle": "Commander"
+}
+
+####
+
+GET {{BaseURL}}/AstronautDuty
