@@ -2,6 +2,7 @@
 using MediatR.Pipeline;
 using Microsoft.EntityFrameworkCore;
 using StargateAPI.Business.Data;
+using StargateAPI.Business.Errors;
 using StargateAPI.Controllers;
 
 namespace StargateAPI.Business.Commands
@@ -9,6 +10,8 @@ namespace StargateAPI.Business.Commands
     public class UpdatePerson : IRequest<UpdatePersonResult>
     {
         public required string Name { get; set; } = string.Empty;
+
+        public required ICollection<AstronautDuty> AstronautDuties { get; set; }
     }
 
     public class UpdatePersonPreProcessor : IRequestPreProcessor<UpdatePerson>
@@ -23,7 +26,7 @@ namespace StargateAPI.Business.Commands
         {
             var person = _context.People.AsNoTracking().FirstOrDefault(z => z.Name == request.Name);
 
-            if (person is null) throw new BadHttpRequestException("Bad Request");
+            if (person is null) throw new PersonDoesNotExistException("Person Does Not Exist");
             
             return Task.CompletedTask;
         }
