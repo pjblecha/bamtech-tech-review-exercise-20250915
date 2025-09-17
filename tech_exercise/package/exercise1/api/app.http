@@ -18,16 +18,14 @@ Content-Type: application/json
   "duty": "Astronaut"
 }
 
-POST {{BaseURL}}/Person/?name=Jim%20Lovell
-
 ####
 
 POST {{BaseURL}}/AstronautDuty
 Content-Type: application/json
 {
-  "name": "Jim Lovell",
-  "rank": "Captain",
-  "dutyTitle": "Commander"
+  "name": "Test Testy",
+  "rank": "CPT",
+  "dutyTitle": "Navigator"
 }
 
 ####
